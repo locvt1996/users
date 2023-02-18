@@ -11,6 +11,9 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     clean: true,
   },
+  devServer: {
+    open: true,
+  },
   devtool: 'source-map',
   target: 'web',
   plugins: [
