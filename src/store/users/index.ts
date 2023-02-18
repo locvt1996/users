@@ -1,19 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { Notification } from '@constants';
+import { openNotification, validateUpsertUser } from '@helpers';
+import { createSlice } from '@reduxjs/toolkit';
 
-import { GetUsersData } from "./type";
-import { getUsers } from "./service";
-import { openNotification } from "../../helpers";
-import { validateUpsertUser } from "../../helpers/validate";
-import { Notification } from "../../constants";
+import { getUsers } from './service';
+import type { GetUsersData } from './type';
 
 const initialState: GetUsersData = {
   loading: false,
   data: [],
-  error: "",
+  error: '',
 };
 
 const { reducer, actions } = createSlice({
-  name: "users",
+  name: 'users',
   initialState,
   reducers: {
     deleteUser: (state, action) => {
@@ -27,12 +26,12 @@ const { reducer, actions } = createSlice({
       if (validateUpsertUser(state.data, userData)) {
         openNotification({
           type: Notification.Fail,
-          message: "Please choose another name",
+          message: 'Please choose another name',
         });
       } else {
         state.data = state.data.concat([userData]);
         openNotification({
-          message: "Create user success",
+          message: 'Create user success',
         });
       }
     },
@@ -40,7 +39,7 @@ const { reducer, actions } = createSlice({
       if (validateUpsertUser(state.data, action.payload)) {
         openNotification({
           type: Notification.Fail,
-          message: "Please choose another name",
+          message: 'Please choose another name',
         });
       } else {
         const { id, login, location, bio } = action.payload;
@@ -51,7 +50,7 @@ const { reducer, actions } = createSlice({
           userUpdate.bio = bio;
         }
         openNotification({
-          message: "Update user success",
+          message: 'Update user success',
         });
       }
     },
@@ -67,7 +66,7 @@ const { reducer, actions } = createSlice({
     });
     builder.addCase(getUsers.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.error.message || "";
+      state.error = action.error.message || '';
     });
   },
 });

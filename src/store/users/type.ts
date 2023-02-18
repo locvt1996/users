@@ -1,4 +1,4 @@
-import { FetchingData } from "../type";
+import type { FetchingData } from '../type';
 
 export type UserItem = {
   id: number | string;

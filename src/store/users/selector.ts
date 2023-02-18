@@ -1,5 +1,5 @@
-import { RootState } from "../";
-import { UserItem } from "./type";
+import type { RootState } from '../';
+import type { UserItem } from './type';
 
 export const getUsersData = (state: RootState) => {
   return state.users;

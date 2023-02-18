@@ -1,12 +1,12 @@
-import { useCallback, useState } from "react";
-import UserForm from "../components/UserForm";
-import { useParams } from "react-router-dom";
-import { getUserInfo } from "../store/users/selector";
-import { UserItem } from "../store/users/type";
-import { useDispatch, useSelector } from "react-redux";
-import useGetUsersData from "../hooks/useGetUsersData";
-import Loading from "../components/Loading";
-import { actions } from "../store/users/";
+import Loading from '@components/Loading';
+import UserForm from '@components/UserForm';
+import useGetUsersData from '@hooks/useGetUsersData';
+import { actions } from '@store/users/';
+import { getUserInfo } from '@store/users/selector';
+import type { UserItem } from '@store/users/type';
+import { useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 const UserPage: React.FC = () => {
   const { loading } = useGetUsersData();
@@ -18,11 +18,7 @@ const UserPage: React.FC = () => {
 
   const onSubmit = useCallback(
     (values: UserItem) => {
-      dispatch(
-        userId
-          ? actions.updateUser({ ...values, id: userId })
-          : actions.createUser(values)
-      );
+      dispatch(userId ? actions.updateUser({ ...values, id: userId }) : actions.createUser(values));
       setCounterSubmit((n) => n + 1);
     },
     [userId, dispatch]

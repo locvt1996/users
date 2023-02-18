@@ -1,14 +1,14 @@
-import { Card } from "antd";
-import { EditOutlined, DeleteFilled } from "@ant-design/icons";
+import './UserCard.css';
 
-import { memo, useCallback } from "react";
-import { Link } from "react-router-dom";
-import { UserItem } from "../../store/users/type";
-import { actions as usersAction } from "../../store/users";
-import { useDispatch } from "react-redux";
-import "./UserCard.css";
+import { DeleteFilled, EditOutlined } from '@ant-design/icons';
+import { actions as usersAction } from '@store/users';
+import type { UserItem } from '@store/users/type';
+import { Card } from 'antd';
+import { memo, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-export type UserCardProps = {} & UserItem;
+export type UserCardProps = UserItem;
 
 const UserCard: React.FC<UserCardProps> = (props) => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const UserCard: React.FC<UserCardProps> = (props) => {
       className="user-card"
       cover={<img alt={login} className="user-card__image" src={avatar_url} />}
       actions={[
-        <Link to={`users/${id}/edit`}>
+        <Link key="edit" to={`users/${id}/edit`}>
           <EditOutlined key="edit" />
         </Link>,
         <DeleteFilled key="delete" onClick={handleDelete} />,

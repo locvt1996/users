@@ -1,23 +1,21 @@
-import { useState, useMemo, useCallback } from "react";
-import UserList from "../components/UserList";
-import { Input, Pagination, Space } from "antd";
-import { ITEM_PER_PAGE } from "../constants";
-import useGetUsersData from "../hooks/useGetUsersData";
-import Loading from "../components/Loading";
-import NoResultContent from "../components/NoResultContent";
+import Loading from '@components/Loading';
+import NoResultContent from '@components/NoResultContent';
+import UserList from '@components/UserList';
+import { ITEM_PER_PAGE } from '@constants';
+import useGetUsersData from '@hooks/useGetUsersData';
+import { Input, Pagination, Space } from 'antd';
+import { useCallback, useMemo, useState } from 'react';
 
 const HomePage: React.FC = () => {
   const { data, loading } = useGetUsersData();
 
   const [filter, setFilter] = useState({
     page: 1,
-    query: "",
+    query: '',
   });
 
   const dataFilterQuery = useMemo(() => {
-    return (
-      data?.filter((item) => item.login.indexOf(filter.query) !== -1) || []
-    );
+    return data?.filter((item) => item.login.indexOf(filter.query) !== -1) || [];
   }, [data, filter.query]);
 
   const dataPerPage = useMemo(() => {
@@ -30,20 +28,17 @@ const HomePage: React.FC = () => {
     return dataFilterQuery.slice(start, end);
   }, [dataFilterQuery, filter.page]);
 
-  const handleChangeQuery = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setFilter((preState) => {
-        const { value } = event.target;
-        if (preState.query === value) return preState;
+  const handleChangeQuery = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setFilter((preState) => {
+      const { value } = event.target;
+      if (preState.query === value) return preState;
 
-        return {
-          page: 1,
-          query: value,
-        };
-      });
-    },
-    []
-  );
+      return {
+        page: 1,
+        query: value,
+      };
+    });
+  }, []);
 
   const handleChangePage = useCallback((page: number) => {
     setFilter((preState) => ({ ...preState, page }));
@@ -53,20 +48,13 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="container">
-      <Space direction="vertical" size="middle" style={{ display: "flex" }}>
+      <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
         <Input placeholder="Search User" onChange={handleChangeQuery} />
 
-        {dataPerPage.length ? (
-          <UserList data={dataPerPage} />
-        ) : (
-          <NoResultContent />
-        )}
+        {dataPerPage.length ? <UserList data={dataPerPage} /> : <NoResultContent />}
 
         {dataFilterQuery?.length > ITEM_PER_PAGE && (
-          <Space
-            direction="horizontal"
-            style={{ width: "100%", justifyContent: "center" }}
-          >
+          <Space direction="horizontal" style={{ width: '100%', justifyContent: 'center' }}>
             <Pagination
               pageSize={ITEM_PER_PAGE}
               current={filter.page}

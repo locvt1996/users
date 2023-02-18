@@ -1,7 +1,10 @@
-import React, { PropsWithChildren } from "react";
-import { Layout } from "antd";
-import Footer from "./Footer";
-import Header from "./Header";
+import { Layout } from 'antd';
+import type { PropsWithChildren } from 'react';
+import React from 'react';
+
+import Footer from './Footer';
+import Header from './Header';
+
 const { Content } = Layout;
 
 const LayoutCustom: React.FC<PropsWithChildren> = ({ children }) => {
@@ -11,9 +14,9 @@ const LayoutCustom: React.FC<PropsWithChildren> = ({ children }) => {
 
       <Content
         style={{
-          margin: "24px 16px",
+          margin: '24px 16px',
           padding: 24,
-          minHeight: "80vh",
+          minHeight: '80vh',
         }}
       >
         {children}

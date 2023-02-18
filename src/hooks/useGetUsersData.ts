@@ -1,8 +1,7 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getUsers } from "../store/users/service";
-import { getUsersData } from "../store/users/selector";
-import { useSelector } from "react-redux";
+import { getUsersData } from '@store/users/selector';
+import { getUsers } from '@store/users/service';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const useGetUsersData = () => {
   const dispatch = useDispatch();

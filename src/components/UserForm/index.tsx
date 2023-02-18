@@ -1,7 +1,6 @@
-import { memo } from "react";
-import { UserItem } from "../../store/users/type";
-import React from "react";
-import { Button, Form, Input } from "antd";
+import type { UserItem } from '@store/users/type';
+import { Button, Form, Input } from 'antd';
+import React, { memo } from 'react';
 
 const layout = {
   labelCol: { span: 8 },
@@ -12,12 +11,7 @@ export type UserInfoProps = {
   onSubmit: (value: UserItem) => void;
 } & UserItem;
 
-const UserInfo: React.FC<UserInfoProps> = ({
-  login,
-  bio,
-  location,
-  onSubmit,
-}) => {
+const UserInfo: React.FC<UserInfoProps> = ({ login, bio, location, onSubmit }) => {
   return (
     <Form
       {...layout}
@@ -30,11 +24,7 @@ const UserInfo: React.FC<UserInfoProps> = ({
         location,
       }}
     >
-      <Form.Item
-        name="login"
-        label="Name"
-        rules={[{ required: true, message: "Please input your username!" }]}
-      >
+      <Form.Item name="login" label="Name" rules={[{ required: true, message: 'Please input your username!' }]}>
         <Input />
       </Form.Item>
       <Form.Item name="location" label="Location">

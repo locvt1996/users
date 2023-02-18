@@ -1,14 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import store from "./store";
-import { Provider } from "react-redux/es/exports";
+import 'antd/dist/reset.css';
 
-import "antd/dist/reset.css";
-import Routers from "./routers";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux/es/exports';
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+import Routers from './routers';
+import store from './store';
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
   // <React.StrictMode>

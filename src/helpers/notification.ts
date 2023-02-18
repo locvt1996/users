@@ -1,5 +1,5 @@
-import { notification } from "antd";
-import { Notification } from "../constants";
+import { Notification } from '@constants';
+import { notification } from 'antd';
 
 export const openNotification = ({
   type = Notification.Success,

@@ -1,7 +1,7 @@
-import { Col, Row } from "antd";
-import { memo } from "react";
-import { UserItem } from "../../store/users/type";
-import UserCard from "../UserCard";
+import UserCard from '@components/UserCard';
+import type { UserItem } from '@store/users/type';
+import { Col, Row } from 'antd';
+import { memo } from 'react';
 
 export type UserListProps = {
   data: UserItem[];
