@@ -1,6 +1,7 @@
 import './UserCard.css';
 
 import { DeleteFilled, EditOutlined } from '@ant-design/icons';
+import person from '@assets/image/person.jpg';
 import { actions as usersAction } from '@store/users';
 import type { UserItem } from '@store/users/type';
 import { Card } from 'antd';
@@ -27,7 +28,7 @@ const UserCard: React.FC<UserCardProps> = (props) => {
     <Card
       hoverable
       className="user-card"
-      cover={<img alt={login} className="user-card__image" src={avatar_url} />}
+      cover={<img alt={login} className="user-card__image" src={avatar_url ?? person} />}
       actions={[
         <Link key="edit" to={`users/${id}/edit`}>
           <EditOutlined key="edit" />
