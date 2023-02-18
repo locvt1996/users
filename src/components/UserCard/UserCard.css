@@ -1,0 +1,10 @@
+.user-card {
+  width: 280px;
+  margin: 0 auto;
+}
+
+.user-card__image {
+  min-width: 280px;
+  min-height: 280px;
+}
+
