@@ -1,4 +1,4 @@
-import './UserCard.css';
+import './UserCard.scss';
 
 import { DeleteFilled, EditOutlined } from '@ant-design/icons';
 import person from '@assets/image/person.jpg';
@@ -32,8 +32,8 @@ const UserCard: React.FC<UserCardProps> = (props: UserCardProps) => {
         </Link>,
         <DeleteFilled key="delete" onClick={handleDelete} />,
       ]}
-      className="user-card"
-      cover={<img alt={login} className="user-card__image" src={avatar_url ?? person} />}
+      className="user-item"
+      cover={<img alt={login} className="user-image" src={avatar_url ?? person} />}
       hoverable
     >
       <Meta description={url} title={login} />

@@ -1,3 +1,5 @@
+import './HomePage.scss';
+
 import NoResultContent from '@components/NoResultContent';
 import UserList from '@components/UserList';
 import { ITEM_PER_PAGE } from '@constants';
@@ -45,14 +47,14 @@ const HomePage: React.FC = () => {
 
   return (
     <Spin spinning={loading}>
-      <div className="container">
+      <div className="home-page">
         <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
           <Input onChange={handleChangeQuery} placeholder="Search User" />
 
           {dataPerPage.length ? <UserList data={dataPerPage} /> : <NoResultContent />}
 
           {dataFilterQuery.length > ITEM_PER_PAGE && (
-            <Space direction="horizontal" style={{ width: '100%', justifyContent: 'center' }}>
+            <Space className="pagination" direction="horizontal">
               <Pagination
                 current={filter.page}
                 onChange={handleChangePage}

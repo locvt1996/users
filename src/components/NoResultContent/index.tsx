@@ -1,3 +1,5 @@
+import './NoResultContent.scss';
+
 import { Space } from 'antd';
 import { memo } from 'react';
 

@@ -1,3 +1,5 @@
+import './Layout.scss';
+
 import ErrorBoundary from '@components/ErrorBoundaries';
 import { Layout } from 'antd';
 import type { PropsWithChildren } from 'react';

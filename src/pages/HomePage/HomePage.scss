@@ -1,0 +1,6 @@
+.home-page {
+  .pagination {
+    width: 100%;
+    @include flex-center;
+  }
+}
