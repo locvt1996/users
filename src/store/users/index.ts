@@ -7,6 +7,7 @@ import type { GetUsersData } from './type';
 
 const initialState: GetUsersData = {
   loading: false,
+  loaded: false,
   data: [],
   error: '',
 };
@@ -59,13 +60,16 @@ const { reducer, actions } = createSlice({
     // GET USERS
     builder.addCase(getUsers.pending, (state) => {
       state.loading = true;
+      state.loaded = false;
     });
     builder.addCase(getUsers.fulfilled, (state, action) => {
       state.loading = false;
+      state.loaded = true;
       state.data = action.payload;
     });
     builder.addCase(getUsers.rejected, (state, action) => {
       state.loading = false;
+      state.loaded = true;
       state.error = action.error.message || '';
     });
   },

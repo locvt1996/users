@@ -60,7 +60,4 @@
       "./src/types"
     ]
   },
-  "include": [
-    "src"
-  ]
 }

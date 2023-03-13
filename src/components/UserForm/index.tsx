@@ -15,26 +15,26 @@ const UserInfo: React.FC<UserInfoProps> = ({ login, bio, location, onSubmit }) =
   return (
     <Form
       {...layout}
-      name="nest-messages"
-      onFinish={onSubmit}
-      style={{ maxWidth: 600 }}
       initialValues={{
         login,
         bio,
         location,
       }}
+      name="nest-messages"
+      onFinish={onSubmit}
+      style={{ maxWidth: 600 }}
     >
-      <Form.Item name="login" label="Name" rules={[{ required: true, message: 'Please input your username!' }]}>
+      <Form.Item label="Name" name="login" rules={[{ required: true, message: 'Please input your username!' }]}>
         <Input />
       </Form.Item>
-      <Form.Item name="location" label="Location">
+      <Form.Item label="Location" name="location">
         <Input />
       </Form.Item>
-      <Form.Item name="bio" label="Bio">
+      <Form.Item label="Bio" name="bio">
         <Input.TextArea />
       </Form.Item>
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-        <Button type="primary" htmlType="submit">
+        <Button htmlType="submit" type="primary">
           Submit
         </Button>
       </Form.Item>

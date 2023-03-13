@@ -1,12 +1,9 @@
-import { Space } from "antd";
-import { memo } from "react";
+import { Space } from 'antd';
+import { memo } from 'react';
 
 const NoResultContent: React.FC = () => {
   return (
-    <Space
-      direction="horizontal"
-      style={{ width: "100%", justifyContent: "center" }}
-    >
+    <Space className="no-result" direction="horizontal">
       No results returned
     </Space>
   );

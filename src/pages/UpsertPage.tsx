@@ -1,35 +1,36 @@
-import Loading from '@components/Loading';
 import UserForm from '@components/UserForm';
+import useActions from '@hooks/useActions';
 import useGetUsersData from '@hooks/useGetUsersData';
 import { actions } from '@store/users/';
 import { getUserInfo } from '@store/users/selector';
 import type { UserItem } from '@store/users/type';
+import { Spin } from 'antd';
 import { useCallback, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 const UserPage: React.FC = () => {
-  const { loading } = useGetUsersData();
-
   const { userId } = useParams();
-  const dispatch = useDispatch();
   const [counterSubmit, setCounterSubmit] = useState<number>(0);
+
+  const { loading } = useGetUsersData();
+  const { updateUserAction, createUserAction } = useActions(actions);
+
   const userInfo = useSelector(getUserInfo(userId));
 
   const onSubmit = useCallback(
     (values: UserItem) => {
-      dispatch(userId ? actions.updateUser({ ...values, id: userId }) : actions.createUser(values));
+      userId ? updateUserAction({ ...values, id: userId }) : createUserAction(values);
+
       setCounterSubmit((n) => n + 1);
     },
-    [userId, dispatch]
+    [createUserAction, updateUserAction, userId]
   );
 
-  if (loading) return <Loading />;
-
   return (
-    <div>
+    <Spin spinning={loading}>
       <UserForm key={counterSubmit} {...userInfo} onSubmit={onSubmit} />
-    </div>
+    </Spin>
   );
 };
 

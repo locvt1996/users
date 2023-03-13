@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 export type UserCardProps = UserItem;
 
-const UserCard: React.FC<UserCardProps> = (props) => {
+const UserCard: React.FC<UserCardProps> = (props: UserCardProps) => {
   const dispatch = useDispatch();
   const { login, id, avatar_url, url } = props;
   const { Meta } = Card;
@@ -26,17 +26,17 @@ const UserCard: React.FC<UserCardProps> = (props) => {
 
   return (
     <Card
-      hoverable
-      className="user-card"
-      cover={<img alt={login} className="user-card__image" src={avatar_url ?? person} />}
       actions={[
         <Link key="edit" to={`users/${id}/edit`}>
           <EditOutlined key="edit" />
         </Link>,
         <DeleteFilled key="delete" onClick={handleDelete} />,
       ]}
+      className="user-card"
+      cover={<img alt={login} className="user-card__image" src={avatar_url ?? person} />}
+      hoverable
     >
-      <Meta title={login} description={url} />
+      <Meta description={url} title={login} />
     </Card>
   );
 };

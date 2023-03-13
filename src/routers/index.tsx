@@ -9,10 +9,10 @@ const Routers: React.FC = () => {
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path='*' element={<NotFoundPage />} />
-          <Route path='/' element={<HomePage />} />
-          <Route path='users/:userId/edit' element={<UpsertPage key='edit' />} />
-          <Route path='users/create' element={<UpsertPage key='create' />} />
+          <Route element={<NotFoundPage />} path="*" />
+          <Route element={<HomePage />} path="/" />
+          <Route element={<UpsertPage key="edit" />} path="users/:userId/edit" />
+          <Route element={<UpsertPage key="create" />} path="users/create" />
         </Routes>
       </Layout>
     </BrowserRouter>

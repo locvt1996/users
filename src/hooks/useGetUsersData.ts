@@ -3,17 +3,20 @@ import { getUsers } from '@store/users/service';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import useActions from './useActions';
+
 const useGetUsersData = () => {
   const dispatch = useDispatch();
-  const { loading, data, error } = useSelector(getUsersData);
+  const { getUsersAction } = useActions({ getUsers });
+  const { loading, data, error, loaded } = useSelector(getUsersData);
 
   useEffect(() => {
-    if (!data.length) {
-      dispatch(getUsers());
+    if (!loaded) {
+      getUsersAction();
     }
-  }, [dispatch, data]);
+  }, [dispatch, getUsersAction, loaded]);
 
-  return { loading, data, error };
+  return { loading, data, error, loaded };
 };
 
 export default useGetUsersData;

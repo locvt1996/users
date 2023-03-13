@@ -1,9 +1,8 @@
-import Loading from '@components/Loading';
 import NoResultContent from '@components/NoResultContent';
 import UserList from '@components/UserList';
 import { ITEM_PER_PAGE } from '@constants';
 import useGetUsersData from '@hooks/useGetUsersData';
-import { Input, Pagination, Space } from 'antd';
+import { Input, Pagination, Space, Spin } from 'antd';
 import { useCallback, useMemo, useState } from 'react';
 
 const HomePage: React.FC = () => {
@@ -15,7 +14,7 @@ const HomePage: React.FC = () => {
   });
 
   const dataFilterQuery = useMemo(() => {
-    return data?.filter((item) => item.login.indexOf(filter.query) !== -1) || [];
+    return data.filter((item) => item.login.indexOf(filter.query) !== -1);
   }, [data, filter.query]);
 
   const dataPerPage = useMemo(() => {
@@ -44,27 +43,27 @@ const HomePage: React.FC = () => {
     setFilter((preState) => ({ ...preState, page }));
   }, []);
 
-  if (loading) return <Loading />;
-
   return (
-    <div className="container">
-      <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
-        <Input placeholder="Search User" onChange={handleChangeQuery} />
+    <Spin spinning={loading}>
+      <div className="container">
+        <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+          <Input onChange={handleChangeQuery} placeholder="Search User" />
 
-        {dataPerPage.length ? <UserList data={dataPerPage} /> : <NoResultContent />}
+          {dataPerPage.length ? <UserList data={dataPerPage} /> : <NoResultContent />}
 
-        {dataFilterQuery?.length > ITEM_PER_PAGE && (
-          <Space direction="horizontal" style={{ width: '100%', justifyContent: 'center' }}>
-            <Pagination
-              pageSize={ITEM_PER_PAGE}
-              current={filter.page}
-              onChange={handleChangePage}
-              total={dataFilterQuery?.length}
-            />
-          </Space>
-        )}
-      </Space>
-    </div>
+          {dataFilterQuery.length > ITEM_PER_PAGE && (
+            <Space direction="horizontal" style={{ width: '100%', justifyContent: 'center' }}>
+              <Pagination
+                current={filter.page}
+                onChange={handleChangePage}
+                pageSize={ITEM_PER_PAGE}
+                total={dataFilterQuery.length}
+              />
+            </Space>
+          )}
+        </Space>
+      </div>
+    </Spin>
   );
 };
 

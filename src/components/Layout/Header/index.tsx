@@ -1,7 +1,7 @@
-import { HomeOutlined, UserAddOutlined } from "@ant-design/icons";
-import { Layout, Menu } from "antd";
-import React, { memo,useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { HomeOutlined, UserAddOutlined } from '@ant-design/icons';
+import { Layout, Menu } from 'antd';
+import React, { memo, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const { Header } = Layout;
 
@@ -10,33 +10,33 @@ const HeaderCustom: React.FC = () => {
 
   const getDefaultSelection = useMemo(() => {
     switch (window.location.pathname) {
-      case "/users/create":
-        return "create-user";
+      case '/users/create':
+        return 'create-user';
       default:
-        return "home";
+        return 'home';
     }
   }, []);
 
   return (
     <Header>
       <Menu
-        theme="dark"
-        mode="horizontal"
         defaultSelectedKeys={[getDefaultSelection]}
         items={[
           {
-            key: "home",
-            label: "Home",
+            key: 'home',
+            label: 'Home',
             icon: <HomeOutlined />,
-            onClick: () => navigation("/"),
+            onClick: () => navigation('/'),
           },
           {
-            key: "create-user",
-            label: "Create User",
+            key: 'create-user',
+            label: 'Create User',
             icon: <UserAddOutlined />,
-            onClick: () => navigation("/users/create"),
+            onClick: () => navigation('/users/create'),
           },
         ]}
+        mode="horizontal"
+        theme="dark"
       />
     </Header>
   );

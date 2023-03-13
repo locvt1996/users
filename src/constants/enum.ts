@@ -1,4 +1,4 @@
 export enum Notification {
-  Success = "Success",
-  Fail = "Fail",
+  Success = 'Success',
+  Fail = 'Fail',
 }

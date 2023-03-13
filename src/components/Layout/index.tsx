@@ -1,3 +1,4 @@
+import ErrorBoundary from '@components/ErrorBoundaries';
 import { Layout } from 'antd';
 import type { PropsWithChildren } from 'react';
 import React from 'react';
@@ -12,15 +13,9 @@ const LayoutCustom: React.FC<PropsWithChildren> = ({ children }) => {
     <Layout className="site-layout">
       <Header />
 
-      <Content
-        style={{
-          margin: '24px 16px',
-          padding: 24,
-          minHeight: '80vh',
-        }}
-      >
-        {children}
-      </Content>
+      <ErrorBoundary>
+        <Content className="content">{children}</Content>
+      </ErrorBoundary>
 
       <Footer />
     </Layout>

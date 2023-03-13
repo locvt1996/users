@@ -7,12 +7,12 @@ export type UserListProps = {
   data: UserItem[];
 };
 
-const UserList: React.FC<UserListProps> = ({ data }) => {
+const UserList: React.FC<UserListProps> = ({ data }: UserListProps) => {
   return (
     <div>
       <Row gutter={[0, 40]}>
-        {data?.map((item) => (
-          <Col md={8} sm={12} key={item.id}>
+        {data.map((item) => (
+          <Col key={item.id} md={8} sm={12}>
             <UserCard {...item} />
           </Col>
         ))}
